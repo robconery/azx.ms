@@ -1,3 +1,12 @@
+---
+title: Deploying PostgreSQL
+description: Pushing Azure Database for PostgreSQL to Azure.
+group: Database
+tags:
+  - postgres
+  - data
+---
+
 #!/bin/bash
 
 #Change the settings below as you need
