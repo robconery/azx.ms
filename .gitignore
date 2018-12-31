@@ -4,3 +4,4 @@ _site
 .sass-cache
 .gems
 .bundle
+.code-highlighter-cache

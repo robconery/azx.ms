@@ -1,0 +1,764 @@
+
+Group
+    az acr : Manage Azure Container Registries for private registries within Azure.
+
+Subgroups:
+    build-task  : Manage build definitions, which can be triggered by git commits or base image
+                  updates.
+    config      : Configure various policies for Azure Container Registries.
+    credential  : Manage login credentials for Azure Container Registries.
+    replication : Manage replications of Azure Container Registries across multiple regions.
+    repository  : Manage repositories (image names) for Azure Container Registries.
+    webhook     : Manage webhooks for Azure Container Registries.
+
+Commands:
+    build       : Queues a quick docker build providing interactive feedback.
+    check-name  : Checks if a container registry name is valid and available for use.
+    create      : Creates a container registry.
+    delete      : Deletes a container registry.
+    import      : Imports an image to the container registry from source.
+    list        : Lists all the container registries under the current subscription.
+    login       : Log in to a container registry through the Docker CLI.
+    show        : Get the details of a container registry.
+    show-usage  : Get the quota usages for a container registry.
+    update      : Update a container registry.
+
+
+Group
+    az acs : Manage Azure Container Services.
+
+Subgroups:
+    dcos           : Commands to manage a DC/OS-orchestrated Azure Container Service.
+    kubernetes     : Commands to manage a Kubernetes-orchestrated Azure Container Service.
+
+Commands:
+    browse         : Show the dashboard for a service container's orchestrator in a web browser.
+    create         : Create a container service.
+    delete         : Delete a container service.
+    list           : List container services.
+    list-locations : List locations where Azure Container Service is in preview and in production.
+    scale          : Change the private agent count of a container service.
+    show           : Get the details for a container service.
+    wait           : Wait for a container service to reach a desired state.
+
+
+Group
+    az ad : Manage Azure Active Directory Graph entities needed for Role Based Access Control.
+
+Subgroups:
+    app   : Manage applications with AAD Graph.
+    group : Manage Azure Active Directory groups.
+    sp    : Manage Azure Active Directory service principals for automation authentication.
+    user  : Manage Azure Active Directory users and user authentication.
+
+
+Group
+    az aks : Manage Azure Kubernetes Services.
+
+Commands:
+    browse            : Show the dashboard for a Kubernetes cluster in a web browser.
+    create            : Create a new managed Kubernetes cluster.
+    delete            : Delete a managed Kubernetes cluster.
+    disable-addons    : Disable Kubernetes addons.
+    enable-addons     : Enable Kubernetes addons.
+    get-credentials   : Get access credentials for a managed Kubernetes cluster.
+    get-upgrades      : Get the upgrade versions available for a managed Kubernetes cluster.
+    get-versions      : Get the versions available for creating a managed Kubernetes cluster.
+    install-cli       : Download and install kubectl, the Kubernetes command-line tool.
+    install-connector : (PREVIEW) Install the ACI Connector on a managed Kubernetes cluster.
+    list              : List managed Kubernetes clusters.
+    remove-connector  : (PREVIEW) Remove the ACI Connector from a managed Kubernetes cluster.
+    remove-dev-spaces : (PREVIEW) Remove Azure Dev Spaces from a managed Kubernetes cluster.
+    scale             : Scale the node pool in a managed Kubernetes cluster.
+    show              : Show the details for a managed Kubernetes cluster.
+    upgrade           : Upgrade a managed Kubernetes cluster to a newer version.
+    upgrade-connector : (PREVIEW) Upgrade the ACI Connector on a managed Kubernetes cluster.
+    use-dev-spaces    : (PREVIEW) Use Azure Dev Spaces with a managed Kubernetes cluster.
+    wait              : Wait for a managed Kubernetes cluster to reach a desired state.
+
+
+Group
+    az ams : Manage Azure Media Services resources.
+
+Subgroups:
+    account   : Manage Azure Media Services accounts.
+    asset     : Manage assets for an Azure Media Services account.
+    job       : Manage jobs for a transform.
+    streaming : Manage streamings for an Azure Media Services account.
+    transform : Manage transforms for an Azure Media Services account.
+
+
+Group
+    az appservice : Manage App Service plans.
+
+Subgroups:
+    plan          : Manage app service plans.
+
+Commands:
+    list-locations : List regions where a plan sku is available.
+
+
+Group
+    az backup : Manage Azure Backups.
+
+Subgroups:
+    container     : Resource which houses items or applications to be protected.
+    item          : An item which is already protected or backed up to an Azure Recovery services vault with an associated policy.
+    job           : Entity which contains details of the job.
+    policy        : A backup policy defines when you want to take a backup and for how long you would retain each backup copy.
+    protection    : Manage protection of your items, enable protection or disable it, or take on-demand backups.
+    recoverypoint : A snapshot of data at that point-of-time, stored in Recovery Services Vault, from which you can restore information.
+    restore       : Restore backed up items from recovery points in a Recovery Services vault.
+    vault         : Online storage entity in Azure used to hold data such as backup copies, recovery points and backup policies.
+
+
+Group
+    az batch : Manage Azure Batch.
+
+Subgroups:
+    account      : Manage Azure Batch accounts.
+    application  : Manage Batch applications.
+    certificate  : Manage Batch certificates.
+    job          : Manage Batch jobs.
+    job-schedule : Manage Batch job schedules.
+    location     : Manage Batch service options for a subscription at the region level.
+    node         : Manage Batch compute nodes.
+    pool         : Manage Batch pools.
+    task         : Manage Batch tasks.
+
+
+Group
+    az batchai : Manage Batch AI resources.
+
+Subgroups:
+    cluster     : Commands to manage clusters.
+    experiment  : Commands to manage experiments.
+    file-server : Commands to manage file servers.
+    job         : Commands to manage jobs.
+    workspace   : Commands to manage workspaces.
+
+Commands:
+    list-usages : Gets the current usage information as well as limits for Batch AI resources for given location.
+
+
+Group
+    az cdn : Manage Azure Content Delivery Networks (CDNs).
+
+Subgroups:
+    custom-domain : Manage Azure CDN Custom Domains to provide custom host names for endpoints.
+    edge-node     : View all available CDN edge nodes.
+    endpoint      : Manage CDN endpoints.
+    origin        : List or show existing origins related to CDN endpoints.
+    profile       : Manage CDN profiles to define an edge network.
+
+Commands:
+    name-exists   : Check the availability of a resource name.
+    usage         : Check the quota and actual usage of the CDN profiles under the given
+                    subscription.
+
+
+Group
+    az cloud : Manage registered Azure clouds.
+
+Commands:
+    list          : List registered clouds.
+    list-profiles : List the supported profiles for a cloud.
+    register      : Register a cloud.
+    set           : Set the active cloud.
+    show          : Get the details of a registered cloud.
+    unregister    : Unregister a cloud.
+    update        : Update the configuration of a cloud.
+
+
+Group
+    az cognitiveservices : Manage Azure Cognitive Services accounts.
+
+Subgroups:
+    account : Manage Azure Cognitive Services accounts.
+
+Commands:
+    list    : List available Azure Cognitive Services accounts.
+
+
+Group
+    az container : Manage Azure Container Instances.
+
+Commands:
+    attach : Attach local standard output and error streams to a container in a container group.
+    create : Create a container group.
+    delete : Delete a container group.
+    exec   : Execute a command from within a running container of a container group.
+    export : Export a container group in yaml format.
+    list   : List container groups.
+    logs   : Examine the logs for a container in a container group.
+    show   : Get the details of a container group.
+
+
+Group
+    az cosmosdb : Manage Azure Cosmos DB database accounts.
+
+Subgroups:
+    collection               : Manage Azure Cosmos DB collections.
+    database                 : Manage Azure Cosmos DB databases.
+
+Commands:
+    check-name-exists        : Checks if an Azure Cosmos DB account name exists.
+    create                   : Creates a new Azure Cosmos DB database account.
+    delete                   : Deletes an Azure Cosmos DB database account.
+    failover-priority-change : Changes the failover priority for the Azure Cosmos DB database account.
+    list                     : List Azure Cosmos DB database accounts.
+    list-connection-strings  : List the connection strings for a Azure Cosmos DB database account.
+    list-keys                : List the access keys for a Azure Cosmos DB database account.
+    list-read-only-keys      : List the read-only access keys for a Azure Cosmos DB database account.
+    regenerate-key           : Regenerate an access key for a Azure Cosmos DB database account.
+    show                     : Get the details of an Azure Cosmos DB database account.
+    update                   : Update an Azure Cosmos DB database account.
+
+
+Group
+    az deployment : Manage Azure Resource Manager deployments at subscription scope.
+
+Subgroups:
+    operation : Manage deployment operations.
+
+Commands:
+    create    : Start a deployment.
+    delete    : Deletes a deployment from the deployment history.
+    export    : Export the template used for a deployment.
+    list      : Get all the deployments for a subscription.
+    show      : Gets a deployment.
+    validate  : Validate whether a template is syntactically correct.
+    wait      : Place the CLI in a waiting state until a deployment condition is met.
+
+
+Group
+    az disk : Manage Azure Managed Disks.
+
+Commands:
+    create        : Create a managed disk.
+    delete        : Delete a managed disk.
+    grant-access  : Grant a resource read access to a managed disk.
+    list          : List managed disks.
+    revoke-access : Revoke a resource's read access to a managed disk.
+    show          : Gets information about a disk.
+    update        : Update a managed disk.
+    wait          : Place the CLI in a waiting state until a condition of a managed disk is met.
+
+
+Group
+    az dla : (PREVIEW) Manage Data Lake Analytics accounts, jobs, and catalogs.
+
+Subgroups:
+    account : (PREVIEW) Manage Data Lake Analytics accounts.
+    catalog : (PREVIEW) Manage Data Lake Analytics catalogs.
+    job     : (PREVIEW) Manage Data Lake Analytics jobs.
+
+
+Group
+    az dls : (PREVIEW) Manage Data Lake Store accounts and filesystems.
+
+Subgroups:
+    account : (PREVIEW) Manage Data Lake Store accounts.
+    fs      : (PREVIEW) Manage a Data Lake Store filesystem.
+
+
+Group
+    az dms : Manage Azure Data Migration Service (DMS) instances.
+
+Subgroups:
+    project      : Manage Projects for an instance of the Data Migration Service.
+
+Commands:
+    check-name   : Check if a given DMS instance name is available in a given region as well as the
+                   name's validity.
+    check-status : Perform a health check and return the status of the service and virtual machine
+                   size.
+    create       : Create an instance of the Data Migration Service.
+    delete       : Delete an instance of the Data Migration Service.
+    list         : List the DMS instances within your currently configured subscription (to set this
+                   use "az account set"). If provided, only show the instances within a given
+                   resource group.
+    list-skus    : List the SKUs that are supported by the Data Migration Service.
+    show         : Show the details for an instance of the Data Migration Service.
+    start        : Start an instance of the Data Migration Service. It can then be used to run data
+                   migrations.
+    stop         : Stop an instance of the Data Migration Service. While stopped, it can't be used
+                   to run data migrations and the owner won't be billed.
+    wait         : Place the CLI in a waiting state until a condition of the DMS instance is met.
+
+
+Group
+    az eventgrid : Manage Azure Event Grid topics and subscriptions.
+
+Subgroups:
+    event-subscription : Manage event subscriptions for an Event Grid topic or for an Azure resource.
+    topic              : Manage Azure Event Grid topics.
+    topic-type         : Get details for topic types.
+
+
+Group
+    az eventhubs : Manage Azure Event Hubs namespaces, eventhubs, consumergroups and geo recovery
+    configurations - Alias.
+
+Subgroups:
+    eventhub          : Manage Azure Event Hubs eventhub and authorization-rule.
+    georecovery-alias : Manage Azure Event Hubs Geo Recovery configuration Alias.
+    namespace         : Manage Azure Event Hubs namespace and Authorizationrule.
+
+
+Group
+    az extension : Manage and update CLI extensions.
+
+Commands:
+    add            : Add an extension.
+    list           : List the installed extensions.
+    list-available : List publicly available extensions.
+    remove         : Remove an extension.
+    show           : Show an extension.
+    update         : Update an extension.
+
+
+Group
+    az functionapp : Manage function apps.
+
+Subgroups:
+    config                     : Configure a function app.
+    cors                       : Manage Cross-Origin Resource Sharing (CORS).
+    deployment                 : Manage function app deployments.
+    identity                   : Manage functionapp's managed service identity.
+
+Commands:
+    create                     : Create a function app.
+    delete                     : Delete a function app.
+    list                       : List function apps.
+    list-consumption-locations : List available locations for running function apps.
+    restart                    : Restart a function app.
+    show                       : Get the details of a function app.
+    start                      : Start a function app.
+    stop                       : Stop a function app.
+    update                     : Update a function app.
+
+
+Group
+    az group : Manage resource groups and template deployments.
+
+Subgroups:
+    deployment : Manage Azure Resource Manager deployments.
+    lock       : Manage Azure resource group locks.
+
+Commands:
+    create     : Create a new resource group.
+    delete     : Delete a resource group.
+    exists     : Check if a resource group exists.
+    export     : Captures a resource group as a template.
+    list       : List resource groups.
+    show       : Gets a resource group.
+    update     : Update a resource group.
+    wait       : Place the CLI in a waiting state until a condition of the resource group is met.
+
+
+Group
+    az identity : Managed Service Identities.
+
+Commands:
+    create          : Create or update an identity in the specified subscription and resource group.
+    delete          : Deletes the identity.
+    list            : List Managed Service Identities.
+    list-operations : Lists available operations for the Managed Identity provider.
+    show            : Gets the identity.
+
+
+Group
+    az image : Manage custom virtual machine images.
+
+Commands:
+    create : Create a custom Virtual Machine Image from managed disks or snapshots.
+    delete : Deletes an Image.
+    list   : List custom VM images.
+    show   : Gets an image.
+
+
+
+Group
+    az iot : Manage Internet of Things (IoT) assets. Comprehensive IoT data-plane functionality is available in the Azure IoT CLI Extension. For more info and install guide go to https://github.com/Azure/azure-iot-cli-extension.
+
+Subgroups:
+    dps : Manage Azure IoT Hub Device Provisioning Service.
+    hub : Manage Azure IoT hubs.
+
+
+Group
+    az iotcentral : Manage IoT Central assets.
+
+Subgroups:
+    app : Manage IoT Central applications.
+
+
+Group
+    az keyvault : Manage KeyVault keys, secrets, and certificates.
+
+Subgroups:
+    certificate   : Manage certificates.
+    key           : Manage keys.
+    network-rule  : Manage vault network ACLs.
+    secret        : Manage secrets.
+    storage       : Manage storage accounts.
+
+Commands:
+    create        : Create a key vault.
+    delete        : Delete a key vault.
+    delete-policy : Delete security policy settings for a Key Vault.
+    list          : List key vaults.
+    list-deleted  : Gets information about the deleted vaults in a subscription.
+    purge         : Permanently deletes the specified vault.
+    recover       : Recover a key vault.
+    set-policy    : Update security policy settings for a Key Vault.
+    show          : Show details of a key vault.
+    update        : Update the properties of a key vault.
+
+
+Group
+    az lab : Manage Azure DevTest Labs.
+
+Subgroups:
+    arm-template    : Manage Azure Resource Manager (ARM) templates in an Azure DevTest Lab.
+    artifact        : Manage DevTest Labs artifacts.
+    artifact-source : Manage DevTest Lab artifact sources.
+    custom-image    : Manage custom images of a DevTest Lab.
+    environment     : Manage environments for an Azure DevTest Lab.
+    formula         : Manage formulas for an Azure DevTest Lab.
+    gallery-image   : List Azure Marketplace images allowed for a DevTest Lab.
+    secret          : Manage secrets of an Azure DevTest Lab.
+    vm              : Manage VMs in an Azure DevTest Lab.
+    vnet            : Manage virtual networks of an Azure DevTest Lab.
+
+Commands:
+    delete          : Delete lab.
+    get             : Get lab.
+
+
+Group
+    az maps : Manage Azure Maps.
+
+Subgroups:
+    account : Manage Azure Maps accounts.
+
+
+Group
+    az monitor : Manage the Azure Monitor Service.
+
+Subgroups:
+    action-group        : Manage action groups.
+    activity-log        : Manage activity logs.
+    autoscale           : Manage autoscale settings.
+    diagnostic-settings : Manage service diagnostic settings.
+    log-profiles        : Manage log profiles.
+    metrics             : View Azure resource metrics.
+
+
+Group
+    az mysql : Manage Azure Database for MySQL servers.
+
+Subgroups:
+    db          : Manage MySQL databases on a server.
+    server      : Manage MySQL servers.
+    server-logs : Manage server logs.
+
+
+Group
+    az network : Manage Azure Network resources.
+
+Subgroups:
+    application-gateway : Manage application-level routing and load balancing services.
+    asg                 : Manage application security groups (ASGs).
+    ddos-protection     : Manage DDoS Protection Plans.
+    dns                 : Manage DNS domains in Azure.
+    express-route       : Manage dedicated private network fiber connections to Azure.
+    lb                  : Manage and configure load balancers.
+    local-gateway       : Manage local gateways.
+    nic                 : Manage network interfaces.
+    nsg                 : Manage Azure Network Security Groups (NSGs).
+    public-ip           : Manage public IP addresses.
+    route-filter        : (PREVIEW) Manage route filters.
+    route-table         : Manage route tables.
+    traffic-manager     : Manage the routing of incoming traffic.
+    vnet                : Manage Azure Virtual Networks.
+    vnet-gateway        : Use an Azure Virtual Network Gateway to establish secure, cross-premises connectivity.
+    vpn-connection      : Manage VPN connections.
+    watcher             : Manage the Azure Network Watcher.
+
+Commands:
+    list-usages         : List the number of network resources in a region that are used against a subscription quota.
+
+
+Group
+    az policy : Manage resource policies.
+
+Subgroups:
+    assignment     : Manage resource policy assignments.
+    definition     : Manage resource policy definitions.
+    event          : Manage policy events.
+    set-definition : Manage resource policy set definitions.
+    state          : Manage policy compliance states.
+
+
+Group
+    az postgres : Manage Azure Database for PostgreSQL servers.
+
+Subgroups:
+    db          : Manage PostgreSQL databases on a server.
+    server      : Manage PostgreSQL servers.
+    server-logs : Manage server logs.
+
+
+Group
+    az provider : Manage resource providers.
+
+Subgroups:
+    operation  : Get provider operations metadatas.
+
+Commands:
+    list       : Gets all resource providers for a subscription.
+    register   : Register a provider.
+    show       : Gets the specified resource provider.
+    unregister : Unregister a provider.
+
+
+Group
+    az redis : Manage dedicated Redis caches for your Azure applications.
+
+Subgroups:
+    patch-schedule  : Manage Redis patch schedules.
+
+Commands:
+    create          : Create new Redis Cache instance.
+    delete          : Deletes a Redis cache.
+    export          : Export data stored in a Redis cache.
+    force-reboot    : Reboot specified Redis node(s).
+    import          : Import data into a Redis cache.
+    list            : List Redis caches.
+    list-keys       : Retrieve a Redis cache's access keys.
+    regenerate-keys : Regenerate Redis cache's access keys.
+    show            : Gets a Redis cache (resource description).
+    update          : Scale or update settings of a Redis cache.
+
+
+Group
+    az relay : Manage Azure Relay Service namespaces, WCF relays, hybrid connections, and rules.
+
+Subgroups:
+    hyco      : Manage Azure Relay Service Hybrid Connection and Authorization Rule.
+    namespace : Manage Azure Relay Service Namespace.
+    wcfrelay  : Manage Azure Relay Service WCF Relay and Authorization Rule.
+
+
+Group
+    az reservations : Manage Azure Reservations.
+
+Subgroups:
+    catalog              : See catalog of available reservations.
+    reservation          : Manage reservation entities.
+    reservation-order    : Manage reservation order, which is container for reservations.
+    reservation-order-id : See reservation order ids that are applied to subscription.
+
+
+Group
+    az role : Manage user roles for access control with Azure Active Directory and service principals.
+
+Subgroups:
+    assignment : Manage role assignments.
+    definition : Manage role definitions.
+
+
+Group
+    az search : Manage Azure Search services, admin keys and query keys.
+
+Subgroups:
+    admin-key : Manage Azure Search admin keys.
+    query-key : Manage Azure Search query keys.
+    service   : Manage Azure Search services.
+
+
+Group
+    az servicebus : Manage Azure Service Bus namespaces, queues, topics, subscriptions, rules and
+    geo-disaster recovery configuration alias.
+
+Subgroups:
+    georecovery-alias : Manage Azure Service Bus Geo-Disaster Recovery Configuration Alias.
+    migration         : Manage Azure Service Bus Migration of Standard to Premium.
+    namespace         : Manage Azure Service Bus Namespace.
+    queue             : Manage Azure Service Bus Queue and Authorization Rule.
+    topic             : Manage Azure Service Bus Topic and Authorization Rule.
+
+
+Group
+    az sf : Manage and administer Azure Service Fabric clusters.
+
+Subgroups:
+    application : Manage applications running on an Azure Service Fabric cluster.
+    cluster     : Manage an Azure Service Fabric cluster.
+
+
+Group
+    az snapshot : Manage point-in-time copies of managed disks, native blobs, or other snapshots.
+
+Commands:
+    create        : Create a snapshot.
+    delete        : Deletes a snapshot.
+    grant-access  : Grant read access to a snapshot.
+    list          : List snapshots.
+    revoke-access : Revoke read access to a snapshot.
+    show          : Gets information about a snapshot.
+    update        : Update a snapshot.
+
+
+Group
+    az sql : Manage Azure SQL Databases and Data Warehouses.
+
+Subgroups:
+    db             : Manage databases.
+    dw             : Manage data warehouses.
+    elastic-pool   : Manage elastic pools.
+    failover-group : Manage SQL Failover Groups.
+    mi             : Manage SQL managed instances.
+    midb           : Manage SQL managed instance databases.
+    server         : Manage SQL servers.
+
+Commands:
+    list-usages    : Gets all subscription usage metrics in a given location.
+    show-usage     : Gets a subscription usage metric.
+
+
+Group
+    az storage : Manage Azure Cloud Storage resources.
+
+Subgroups:
+    account   : Manage storage accounts.
+    blob      : Manage object storage for unstructured data (blobs).
+    container : Manage blob storage containers.
+    cors      : Manage storage service Cross-Origin Resource Sharing (CORS).
+    directory : Manage file storage directories.
+    entity    : Manage table storage entities.
+    file      : Manage file shares that use the SMB 3.0 protocol.
+    logging   : Manage storage service logging information.
+    message   : Manage queue storage messages.
+    metrics   : Manage storage service metrics.
+    queue     : Manage storage queues.
+    share     : Manage file shares.
+    table     : Manage NoSQL key-value storage.
+
+
+Group
+    az tag : Manage resource tags.
+
+Commands:
+    add-value    : Creates a tag value.
+    create       : Creates a tag in the subscription.
+    delete       : Deletes a tag from the subscription.
+    list         : Gets the names and values of all resource tags that are defined in a subscription.
+    remove-value : Deletes a tag value.
+
+
+Group
+    az vm : Manage Linux or Windows virtual machines.
+
+Subgroups:
+    availability-set       : Group resources into availability sets.
+    boot-diagnostics       : Troubleshoot the startup of an Azure Virtual Machine.
+    diagnostics            : Configure the Azure Virtual Machine diagnostics extension.
+    disk                   : Manage the managed data disks attached to a VM.
+    encryption             : Manage encryption of VM disks.
+    extension              : Manage extensions on VMs.
+    identity               : Manage service identities of a VM.
+    image                  : Information on available virtual machine images.
+    nic                    : Manage network interfaces. See also `az network nic`.
+    run-command            : Manage run commands on a Virtual Machine.
+    secret                 : Manage VM secrets.
+    unmanaged-disk         : Manage the unmanaged data disks attached to a VM.
+    user                   : Manage user accounts for a VM.
+
+Commands:
+    capture                : Capture information for a stopped VM.
+    convert                : Convert a VM with unmanaged disks to use managed disks.
+    create                 : Create an Azure Virtual Machine.
+    deallocate             : Deallocate a VM.
+    delete                 : Delete a VM.
+    generalize             : Mark a VM as generalized, allowing it to be imaged for multiple deployments.
+    get-instance-view      : Get instance information about a VM.
+    list                   : List details of Virtual Machines.
+    list-ip-addresses      : List IP addresses associated with a VM.
+    list-sizes             : List available sizes for VMs.
+    list-skus              : Get details for compute-related resource SKUs.
+    list-usage             : List available usage resources for VMs.
+    list-vm-resize-options : List available resizing options for VMs.
+    open-port              : Opens a VM to inbound traffic on specified ports.
+    perform-maintenance    : The operation to perform maintenance on a virtual machine.
+    redeploy               : Redeploy an existing VM.
+    resize                 : Update a VM's size.
+    restart                : Restart VMs.
+    show                   : Get the details of a VM.
+    start                  : Start a stopped VM.
+    stop                   : Stop a running VM.
+    update                 : Update the properties of a VM.
+    wait                   : Place the CLI in a waiting state until a condition of the VM is met.
+
+
+Group
+    az vmss : Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS).
+
+Subgroups:
+    diagnostics                   : Configure the Azure Virtual Machine Scale Set diagnostics extension.
+    disk                          : Manage data disks of a VMSS.
+    encryption                    : (PREVIEW) Manage encryption of VMSS.
+    extension                     : Manage extensions on a VM scale set.
+    identity                      : Manage service identities of a VM scaleset.
+    nic                           : Manage network interfaces of a VMSS.
+    rolling-upgrade               : (PREVIEW) Manage rolling upgrades.
+
+Commands:
+    create                        : Create an Azure Virtual Machine Scale Set.
+    deallocate                    : Deallocate VMs within a VMSS.
+    delete                        : Deletes a VM scale set.
+    delete-instances              : Delete VMs within a VMSS.
+    get-instance-view             : View an instance of a VMSS.
+    list                          : List VMSS.
+    list-instance-connection-info : Get the IP address and port number used to connect to individual VM instances within a set.
+    list-instance-public-ips      : List public IP addresses of VM instances within a set.
+    list-instances                : Gets a list of all virtual machines in a VM scale sets.
+    list-skus                     : Gets a list of SKUs available for your VM scale set, including the minimum and maximum VM instances allowed for each SKU.
+    perform-maintenance           : Perform maintenance on one or more virtual machines in a VM scale set.
+    reimage                       : Reimage VMs within a VMSS.
+    restart                       : Restart VMs within a VMSS.
+    scale                         : Change the number of VMs within a VMSS.
+    show                          : Get details on VMs within a VMSS.
+    start                         : Start VMs within a VMSS.
+    stop                          : Power off (stop) VMs within a VMSS.
+    update                        : Update a VMSS.
+    update-instances              : Upgrade VMs within a VMSS.
+    wait                          : Place the CLI in a waiting state until a condition of a scale set is met.
+
+
+Group
+    az webapp : Manage web apps.
+
+Subgroups:
+    auth            : Manage webapp authentication and authorization.
+    config          : Configure a web app.
+    cors            : Manage Cross-Origin Resource Sharing (CORS).
+    deployment      : Manage web app deployments.
+    identity        : Manage webapp's managed service identity.
+    log             : Manage web app logs.
+    traffic-routing : Manage traffic routing for web apps.
+
+Commands:
+    browse          : Open a web app in a browser.
+    create          : Create a web app.
+    delete          : Delete a web app.
+    list            : List web apps.
+    list-runtimes   : List available built-in stacks which can be used for web apps.
+    restart         : Restart a web app.
+    show            : Get the details of a web app.
+    start           : Start a web app.
+    stop            : Stop a web app.
+    update          : Update a web app.
+

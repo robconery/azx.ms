@@ -33,7 +33,9 @@ plugins:
   - octopress-codeblock
 
 collections:
-  scripts:
+  recipes:
+    output: true
+  authors:
     output: true
     
 # Exclude from processing.

@@ -13,18 +13,11 @@ tags:
 
 USER=admin_$RANDOM #set this to whatever you like but it's not something that should be easy
 PASS=$(uuidgen) #Again - whatever you like but keep it safe! Better to make it random
-LOCATION=westus
 SERVERNAME=$RANDOM #this has to be unique across azure
-
-#CHANGE THESE
-RG="change_me"
-DATABASE="test"
 
 echo "Guessing your external IP address from ipinfo.io"
 IP=$(curl -s ipinfo.io/ip)
 echo "Your IP is $IP"
-
-az group create -n $RG -l $LOCATION
 
 #The sku-name parameter value follows the convention {pricing tier}_{compute generation}_{vCores} as in the examples below:
 # --sku-name B_Gen4_2 maps to Basic, Gen 4, and 2 vCores.

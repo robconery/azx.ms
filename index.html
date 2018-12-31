@@ -2,30 +2,38 @@
 title: Home
 layout: default
 ---
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.42.2/codemirror.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.42.2/codemirror.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.42.2/mode/shell/shell.min.js"></script>
 <div class="row">
-  <div class="col-md-5">
     {% for script in site.scripts %}
         {% assign title = script.title %}
         <h2>{{ title }}</h2>
         <p>{{script.description}} - <a href="{{script.url}}" class="view-link">Link</a></p>
     {% endfor %}
-  </div>
+</div>
+<div id="codepanel" class="row" style="display:none">
+  <textarea id="codebox" cols="120" rows="100" ></textarea>
 </div>
 
-<div id="code-modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-      <pre id="code"></pre>
-  </div>
-</div>
 
 <script>
 $(function(){
+  const codebox = document.getElementById("codebox");
+
+
   $(".view-link").on("click", function(ev){
     ev.preventDefault();
     url = $(this).attr("href");
     $.get(url).then(res => {
-      $("#code").html(res)
-      $('#code-modal').modal({show:true})
+      $("#codepanel").show()
+      var cm = CodeMirror.fromTextArea(codebox, {
+        lineNumbers: true
+      });
+      cm.setValue(res);
+      
+      //$('#code-modal').modal({show:true})
     })
   })
 
