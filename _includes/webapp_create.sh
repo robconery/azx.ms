@@ -46,5 +46,4 @@ RUNTIME="PYTHON|3.7"
 az webapp config appsettings set --resource-group $RG --name $APPNAME --runtime $RUNTIME
 
 echo "You can now browse your site at http://$APPNAME.azurewebsites.net"
-open http://$APPNAME.azurewebsites.net
 

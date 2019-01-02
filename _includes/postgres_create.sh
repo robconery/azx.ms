@@ -9,29 +9,23 @@ tags:
 
 #!/bin/bash
 
-#Change the settings below as you need
-
+#Recommend to keep these random, but if you need to change go for it
 USER=admin_$RANDOM #set this to whatever you like but it's not something that should be easy
 PASS=$(uuidgen) #Again - whatever you like but keep it safe! Better to make it random
+DATABASE=DB$RANDOM #No need to have your prod database named a particular name, unless you want to.
 SERVERNAME=$RANDOM #this has to be unique across azure
-
-echo "Guessing your external IP address from ipinfo.io"
-IP=$(curl -s ipinfo.io/ip)
-echo "Your IP is $IP"
-
-#The sku-name parameter value follows the convention {pricing tier}_{compute generation}_{vCores} as in the examples below:
-# --sku-name B_Gen4_2 maps to Basic, Gen 4, and 2 vCores.
-# --sku-name GP_Gen5_32 maps to General Purpose, Gen 5, and 32 vCores.
-# --sku-name MO_Gen5_2 maps to Memory Optimized, Gen 5, and 2 vCores.
-SKU=B_Gen4_1 #this is the cheapest one
-
+#RG = "Your Resource Group - set this in your .env file or here"
 
 echo "Spinning up PostgreSQL $SERVERNAME in group $RG Admin is $USER"
 
 # Create the PostgreSQL service
 az postgres server create --resource-group $RG \
-    --name $SERVERNAME  --location $LOCATION --admin-user $USER \
+    --name $SERVERNAME --admin-user $USER \
     --admin-password $PASS --sku-name $SKU --version 10.0
+
+echo "Guessing your external IP address from ipinfo.io"
+IP=$(curl -s ipinfo.io/ip)
+echo "Your IP is $IP"
 
 # Open up the firewall so we can access
 echo "Popping a hole in firewall for IP address $IP (that's you)"
@@ -39,9 +33,11 @@ az postgres server firewall-rule create --resource-group $RG \
         --server $SERVERNAME --name AllowMyIP \
         --start-ip-address $IP --end-ip-address $IP
 
-echo "Your connection string is postgres://$USER@$SERVERNAME:$PASS@$SERVERNAME.postgres.database.azure.com/postgres"
-echo "Creating the Tailwind database..."
-psql "postgres://$USER%40$SERVERNAME:$PASS@$SERVERNAME.postgres.database.azure.com/postgres" -c "CREATE DATABASE $DATABASE;"
+PG_URL = "postgres://$USER%40$SERVERNAME:$PASS@$SERVERNAME.postgres.database.azure.com"
+echo "Creating database..."
+psql "$PG_URL/postgres" -c "CREATE DATABASE $DATABASE;"
 
-echo "You can now connect to the server by entering this command: "
-echo "psql postgres://$USER%40$SERVERNAME:$PASS@$SERVERNAME.postgres.database.azure.com/$DATABASE"
+AZURE_DATABASE_URL="$PG_URL/$DATABASE"
+echo "$AZURE_DATABASE_URL" >> .env
+echo "Azure database URL added to your .env file. You can now connect to the server by entering this command: "
+echo "psql $AZURE_DATABASE_URL"

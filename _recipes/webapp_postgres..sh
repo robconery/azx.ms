@@ -7,11 +7,14 @@ author: Rob Conery
 ---
 
 #create the postgres DB
+{% include postgres_create.sh %}
 
 #create the webapp
+{% include webapp_create.sh %}
 
-#setup deployment
+{% include webapp_git_deployment.sh %}
 
-#set the ENV DATABASE_URL
+echo "Attaching database"
+az webapp config appsettings set -g $RG -n $APPNAME --settings DATABASE_URL=$AZURE_DATABASE_URL
 
-#setup logging and monitoring
+{% include webapp_logs.sh %}
