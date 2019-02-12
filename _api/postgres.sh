@@ -2,9 +2,7 @@
 title: Deploying PostgreSQL
 description: Pushing Azure Database for PostgreSQL to Azure.
 group: Database
-tags:
-  - postgres
-  - data
+slug: postgres
 ---
 
 #!/bin/bash
@@ -12,7 +10,7 @@ tags:
 #Recommend to keep these random, but if you need to change go for it
 USER=admin_$RANDOM #set this to whatever you like but it's not something that should be easy
 PASS=$(uuidgen) #Again - whatever you like but keep it safe! Better to make it random
-DATABASE=DB$RANDOM #No need to have your prod database named a particular name, unless you want to.
+DATABASE=${DATABASE:-DB$RANDOM} #Will get set to a random value unless already set.
 SERVERNAME=$RANDOM #this has to be unique across azure
 #RG = "Your Resource Group - set this in your .env file or here"
 
