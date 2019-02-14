@@ -1,0 +1,58 @@
+---
+title: AZX Script Builder
+layout: default
+---
+{% assign data_scripts = site.api | where:"group","Database"%}
+{% assign web_scripts = site.api | where:"group","Web"%}
+
+<div class="wrapper">
+  <section class="section section-lg">
+    <section class="section">
+      <img src="/assets/img/path4.png" class="path">
+      <div class="container">
+        <div class="row row-grid justify-content-between">
+          <div class="col-md-12">
+            <h1>Pick Your Scripts</h1>
+    
+            <h2 style="margin-top:24px">Web</h2>
+            {% for script in web_scripts%}
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox">
+                  <span class="form-check-sign"></span>
+                  {{ script.title }}
+                </label>
+              </div>
+            {% endfor %}
+
+
+            <h2>Database</h2>
+            {% for script in data_scripts%}
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox">
+                  <span class="form-check-sign"></span>
+                  {{ script.title }}
+                </label>
+              </div>
+            {% endfor %}
+            
+
+
+            <h2 style="margin-top:24px">Recipes</h2>
+            {% for script in site.recipes%}
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox">
+                  <span class="form-check-sign"></span>
+                  {{ script.title }}
+                </label>
+              </div>
+            {% endfor %}
+            
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+</div>

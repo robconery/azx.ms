@@ -1,8 +1,8 @@
 ---
-title: Deploying MySQL
-slug: mysql
-description: Pushing Azure Database for MySQL to Azure.
+title: MySQL
+description: Creating an Azure Database for MySQL on Azure.
 group: Database
+author: Rob Conery
 ---
 RG={$RG:-"AZX-$RANDOM"}
 LOCATION="Central US"

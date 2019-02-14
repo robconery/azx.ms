@@ -36,6 +36,8 @@ plugins:
 collections:
   api:
     output: false
+  recipes:
+    output: false
   authors:
     output: true
     
