@@ -5,12 +5,12 @@ layout: none
 ---
 #### The Basics ####
 {% for script in site.api %}
-{{script.slug}} | {{script.description}}
+{{script.slug}} | {{script.description}},
 {% endfor %}
 
 
 #### AZX Recipes ####
 {% for script in site.recipes %}
-{{script.slug}} | {{script.description}}
+{{script.slug}} | {{script.description}},
 {% endfor %}
 
