@@ -1,12 +1,14 @@
 ---
-title: Set Up Wordpress on Azure
-description: Create a super scalable Wordpress site on Azure using Web Apps for Containers and hosted MySQL
-slug: wordpress
+title: Set Up Ghost on Azure
+permalink: /api/ghost
+description: Create a super scalable Ghost blog on Azure using Web Apps for Containers and hosted MySQL
+keywords: "ghost blog mysql"
 author: Rob Conery
 ---
+#!/bin/bash
 
-RG="azx"
-APPNAME=$RG-wp
+RG="azxg"
+APPNAME=$RG-ghost
 LOCATION="Central US"
 
 #Recommend to keep these random, but if you need to change go for it
@@ -28,7 +30,9 @@ az group create -n $RG -l $LOCATION
 # --sku-name MO_Gen5_2 maps to Memory Optimized, Gen 5, and 2 vCores.
 #WARNING - this might error out if your region doesn't support the SKU you set here. If it does, execute:
 #az group delete -g [resource group] to drop everything and try again
-#The SKU below is reasonable for a WP blog, but if you're going to host something more, consider more RAM/Cores
+
+#The SKU below is good for a Ghost blog, but if you're going to host something more, consider more RAM/Cores
+#The nice thing about Ghost is Node - it's quite performant on lesser hardware
 SKU=B_Gen5_1 #this is the cheapest one
 
 echo "Spinning up MySQL $SERVERNAME in group $RG Admin is $USER"
@@ -56,19 +60,19 @@ az mysql server firewall-rule create --resource-group $RG \
         --server $SERVERNAME --name AllowAzureIP \
         --start-ip-address 0.0.0.0 --end-ip-address 0.0.0.0
 
-echo "Creating Wordpress Database"
+echo "Creating Ghost Database"
 mysql --host=$SERVERNAME.mysql.database.azure.com \
       --user=$USER@$SERVERNAME --password=$PASS \
-      -e 'create database wordpress;' mysql
+      -e 'create database ghost;' mysql
 
 echo "Setting ENV variables locally"
 MYSQL_SERVER=$SERVERNAME.mysql.database.azure.com
 MYSQL_USER=$USER@$SERVERNAME
 MYSQL_PASSWORD=$PASS
 MYSQL_PORT=3306
-
+MYSQL_DB=$DATABASE
 echo "MYSQL_SERVER=$MYSQL_SERVER\nMYSQL_USER=$USER\nMYSQL_PASSWORD=$PASS\nMYSQL_PORT=3306" >> .env
-echo "alias prod=\"mysql --host=$SERVERNAME.mysql.database.azure.com --user=$USER@$SERVERNAME --password=$PASS\" wordpress"
+echo "alias prod=\"mysql --host=$SERVERNAME.mysql.database.azure.com --user=$USER@$SERVERNAME --password=$PASS\" ghost" >> .env
 echo "MySQL ENV vars added to .env. You can printenv to see them, or cat .env."
 echo "To access your MySQL Instance just run `prod` as an alias. You can rename this in .env."
 
@@ -82,16 +86,20 @@ az appservice plan create --name $RG \
 echo "Creating Web app"
 az webapp create --resource-group $RG \
                   --plan $RG --name $APPNAME \
-                  --deployment-container-image-name wordpress
+                  --deployment-container-image-name ghost
 
 echo "Adding app settings"
 #add the settings for the new MYSQL bits
 az webapp config appsettings set --name $APPNAME \
                                  --resource-group $RG \
-                                 --settings WORDPRESS_DB_HOST=$MYSQL_SERVER \
-                                 WORDPRESS_DB_USER=$MYSQL_USER \
-                                 WORDPRESS_DB_PASSWORD=$MYSQL_PASSWORD \
-                                 WEBSITES_PORT=80
+                                 --settings \
+                                 database__client=mysql \
+                                 database__connection__database=ghost \
+                                 database__connection__host=$MYSQL_SERVER \
+                                 database__connection__user=$MYSQL_USER \
+                                 database__connection__password=$MYSQL_PASSWORD \
+                                 WEBSITES_PORT=2368 \
+                                 WEBSITES_ENABLE_APP_SERVICE_STORAGE=true
 #turn on logging
 echo "Setting up logging"
 #setup logging and monitoring
@@ -105,9 +113,11 @@ az webapp log config --application-logging true \
 echo "Adding logs alias to .env. Invoking this will allow you to see the application logs realtime-ish."
 
 #set an alias for convenience - add to .env
+alias logs="az webapp log tail --name $APPNAME --resource-group $RG"
 echo "alias logs='az webapp log tail -n $APPNAME -g $RG'" >> .env
 
-echo "Opening site and viewing logs"
-open https://$APPNAME.azurewebsites.net
+echo "Opening site admin and viewing logs. This might 502 initially - just give it a minute to start."
+echo "When it does start, head to https://$APPNAME.azurewebsites.net/ghost to set it up."
+open https://$APPNAME.azurewebsites.net/
 source .env
 logs
