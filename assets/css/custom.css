@@ -4,3 +4,20 @@ body {
 .navbar{
   background-color:#178CD4;
 }
+pre :{
+  padding: 24px;
+}
+code {
+  padding:24px;
+  border-radius: 8px;
+}
+.hljs {
+  padding: 24px;
+}
+pre,
+code,
+kbd,
+samp {
+  font-family: "OperatorMono-Book", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 1em;
+}
