@@ -1,0 +1,47 @@
+---
+title: AZX Help
+layout: none
+---
+
+## Essential use
+
+AZX is a simple utility that reaches out to the web and pulls down 
+scripted commands that you can use to generate scripts for Azure.
+
+The simplest way to do this is by using the shell and redirecting
+the output into a file:
+
+azx postgres > azure_postgres.sh
+
+You can then edit this script as you need and then run it in your 
+shell directly:
+
+source ./azure_postgres.sh 
+
+You can access all of the commands using
+
+azx list
+
+If you have any questions please feel free to drop by the issues
+list at https://github.com/robconery/azx/issues.
+
+If you have some ideas or would like to include your own scripts
+here, feel free to submit a PR!
+
+## Using .env files
+
+The easiest way to use AZX is with .env files, which can be picked
+up by your shell or your application as needed. A .env file is
+not required, but it is a standard for holding environment variables
+that your app needs for runtime or that you might need during 
+development. 
+
+You'll notice that a number of settings (such as Resource Group,
+Application Name, Location, etc) are set using shell variables.
+These variables are application-specific so setting them in a 
+central location is generally a good idea.
+
+If you're using Oh My Zsh! for zshell, you can install a .env plugin
+that's very useful:
+https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/dotenv
+

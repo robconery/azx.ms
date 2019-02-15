@@ -1,0 +1,16 @@
+---
+title: List of AZX Commands
+description: "Don't know what you're looking for? Here's a list"
+layout: none
+---
+#### The Basics ####
+{% for script in site.api %}
+{{script.slug}} | {{script.description}},
+{% endfor %}
+
+
+#### AZX Recipes ####
+{% for script in site.recipes %}
+{{script.slug}} | {{script.description}},
+{% endfor %}
+
