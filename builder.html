@@ -9,50 +9,105 @@ layout: default
   <section class="section section-lg">
     <section class="section">
       <img src="/assets/img/path4.png" class="path">
-      <div class="container">
-        <div class="row row-grid justify-content-between">
-          <div class="col-md-12">
+      <div class="container" id="app">
+        <div class="row">
+          <div class="col-md-4">
             <h1>Pick Your Scripts</h1>
     
-            <h2 style="margin-top:24px">Web</h2>
-            {% for script in web_scripts%}
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox">
-                  <span class="form-check-sign"></span>
-                  {{ script.title }}
-                </label>
-              </div>
-            {% endfor %}
+            <h2>Web</h2>
 
+            <ul class="list-group list-group-flush" >
+              <li class="list-group-item" v-for="script in webScripts" style="background-color:transparent;border:0;border-bottom:1px solid #178CD4">
+                  <a href="#" v-on:click="boom(script)"><h4 class="mb-1">${ script.title }</h4></a>
+                  <p class="mb-1 small">${ script.description }</p>
+              </li>
+            </ul>
+            <h2 style="margin-top:32px">Data</h2>
 
-            <h2>Database</h2>
-            {% for script in data_scripts%}
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox">
-                  <span class="form-check-sign"></span>
-                  {{ script.title }}
-                </label>
-              </div>
-            {% endfor %}
-            
+            <ul class="list-group list-group-flush" >
+              <li class="list-group-item" v-for="script in dataScripts" style="background-color:transparent;border:0;border-bottom:1px solid #178CD4">
+                  <a href="#" v-on:click="boom(script)"><h4 class="mb-1">${ script.title }</h4></a>
+                  <p class="mb-1 small">${ script.description }</p>
+              </li>
+            </ul>
+            <h2 style="margin-top:32px">Recipes</h2>
 
-
-            <h2 style="margin-top:24px">Recipes</h2>
-            {% for script in site.recipes%}
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox">
-                  <span class="form-check-sign"></span>
-                  {{ script.title }}
-                </label>
-              </div>
-            {% endfor %}
-            
+            <ul class="list-group list-group-flush" >
+              <li class="list-group-item" v-for="script in recipes" style="background-color:transparent;border:0;border-bottom:1px solid #178CD4">
+                  <a href="#" v-on:click="boom(script)"><h4 class="mb-1">${ script.title }</h4></a>
+                  <p class="mb-1 small">${ script.description }</p>
+              </li>
+            </ul>       
+          </div>
+          <div class="col-md-8" style="display:none" id="codeWrapper">
+            <h2 class="text-center">${title}</h2>
+            <p class="text-center">
+              ${description}. <i>Created by <b>${author}</b></i>
+            </p>
+            <pre >
+              <code class="bash" id="code"></code>
+            </pre>
           </div>
         </div>
       </div>
     </section>
   </section>
+  {% include footer.html %}
 </div>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/atom-one-dark.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+const scripts = [
+  {% for script in site.api %}
+    {
+      title: "{{script.title}}",
+      description: "{{script.description}}",
+      url: "{{script.url}}",
+      group: "{{script.group}}",
+      author: "{{script.author}}"
+    },
+  {% endfor %}
+]
+const recipes = [
+  {% for script in site.recipes %}
+    {
+      title: "{{script.title}}",
+      description: "{{script.description}}",
+      url: "{{script.url}}",
+      author: "{{script.author}}"
+    },
+  {% endfor %}
+]
+$(function(){
+  const app = new Vue({
+    el: '#app',
+    delimiters: ['${', '}'],
+    data: {
+      dataScripts: scripts.filter(s => s.group == "Database"),
+      webScripts: scripts.filter(s => s.group == "Web"),
+      recipes: recipes,
+      title: "",
+      description: "",
+      author: ""
+    },
+    methods: {
+      boom: function(script){
+        this.title = script.title;
+        this.description = script.description;
+        this.author = script.author;
+        let codeBlock = $("#code");
+        let codeWrapper = $("#codeWrapper");
+        $.get(script.url).then((res) => {
+          codeBlock.text(res);
+          codeWrapper.show();
+          $('#code').each(function(i, e) {hljs.highlightBlock(e)});
+        })
+
+      }
+    }
+  })
+})
+
+
+</script>
