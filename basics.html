@@ -30,14 +30,7 @@ layout: default
                   <p class="mb-1 small">${ script.description }</p>
               </li>
             </ul>
-            <h2 style="margin-top:32px">Recipes</h2>
-
-            <ul class="list-group list-group-flush" >
-              <li class="list-group-item" v-for="script in recipes" style="background-color:transparent;border:0;border-bottom:1px solid #178CD4">
-                  <a href="#" v-on:click="boom(script)"><h4 class="mb-1">${ script.title }</h4></a>
-                  <p class="mb-1 small">${ script.description }</p>
-              </li>
-            </ul>       
+   
           </div>
           <div class="col-1"></div>
           <div class="col-8" style="display:none" id="codeWrapper">
@@ -70,16 +63,7 @@ const scripts = [
     },
   {% endfor %}
 ]
-const recipes = [
-  {% for script in site.recipes %}
-    {
-      title: "{{script.title}}",
-      description: "{{script.description}}",
-      url: "{{script.url}}",
-      author: "{{script.author}}"
-    },
-  {% endfor %}
-]
+
 $(function(){
   const app = new Vue({
     el: '#app',
@@ -87,7 +71,6 @@ $(function(){
     data: {
       dataScripts: scripts.filter(s => s.group == "Database"),
       webScripts: scripts.filter(s => s.group == "Web"),
-      recipes: recipes,
       title: "",
       description: "",
       author: ""
