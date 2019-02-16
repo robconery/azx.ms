@@ -1,6 +1,6 @@
 ## Welcome to AZX.ms
 
-![Bit](https://github.com/ashleymcnamara/Developer-Advocate-Bit/blob/master/data.png)
+<img src="https://github.com/ashleymcnamara/Developer-Advocate-Bit/blob/master/data.png" style="width:80px">
 
 This utility is intended to help you create the scripts you need for Microsoft Azure. You can [browse them online](https://azx.ms) or install a quick utility function. 
 
