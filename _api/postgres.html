@@ -8,13 +8,9 @@ author: Rob Conery
 #!/bin/bash
 
 ###### SET THESE #####
-DATABASE=DB_RANDOM #Will get set to a random value unless already set.
+DATABASE=DB_$RANDOM #Will get set to a random value unless already set.
 SERVERNAME=$RANDOM #this has to be unique across azure
 RG = "AZX" #Your Resource Group - set this in your .env file or here
-
-#Recommend to keep these random, but if you need to change go for it
-USER=admin_$RANDOM #set this to whatever you like but it's not something that should be easy
-PASS=$(uuidgen) #Again - whatever you like but keep it safe! Better to make it random
 
 #The sku-name parameter value follows the convention {pricing tier}_{compute generation}_{vCores} as in the examples below:
 # --sku-name B_Gen5_2 maps to Basic, Gen 5, and 2 vCores.
@@ -24,6 +20,12 @@ PASS=$(uuidgen) #Again - whatever you like but keep it safe! Better to make it r
 #az group delete -g [resource group] to drop everything and try again
 #The SKU below is reasonable for a WP blog, but if you're going to host something more, consider more RAM/Cores
 SKU=B_Gen5_1 #this is the cheapest one
+######################
+
+
+#Recommend to keep these random, but if you need to change go for it
+USER=admin_$RANDOM #set this to whatever you like but it's not something that should be easy
+PASS=$(uuidgen) #Again - whatever you like but keep it safe! Better to make it random
 
 echo "Spinning up PostgreSQL $SERVERNAME in group $RG Admin is $USER"
 
