@@ -65,5 +65,5 @@ echo "MySQL ENV vars added to .env. You can printenv to see them, or cat .env."
 echo "To create a database, use mysql -u $USER@$SERVERNAME -p $PASS -h $SERVERNAME.mysql.database.azure.com -p 3306 -D mysql -e 'create database $DATABASE;'"
 echo "Adding connector shortcut to .env"
 echo "alias db_connect=\"mysql -u $USER@$SERVERNAME -p $PASS -h $SERVERNAME.mysql.database.azure.com -p 3306 -D mysql\"" >> .env
+echo "Make sure you have the mysql client installed before trying to connect."
 source .env
-db_connect

@@ -4,13 +4,12 @@ description: Pushing Azure Database for PostgreSQL to Azure.
 group: Database
 author: Rob Conery
 ---
-
 #!/bin/bash
 
 ###### SET THESE #####
-DATABASE=DB_$RANDOM #Will get set to a random value unless already set.
 SERVERNAME=$RANDOM #this has to be unique across azure
 RG="AZX" #Your Resource Group - set this in your .env file or here
+LOCATION="Central US"
 
 #The sku-name parameter value follows the convention {pricing tier}_{compute generation}_{vCores} as in the examples below:
 # --sku-name B_Gen5_2 maps to Basic, Gen 5, and 2 vCores.
@@ -22,16 +21,20 @@ RG="AZX" #Your Resource Group - set this in your .env file or here
 SKU=B_Gen5_1 #this is the cheapest one
 ######################
 
-
 #Recommend to keep these random, but if you need to change go for it
 USER=admin_$RANDOM #set this to whatever you like but it's not something that should be easy
 PASS=$(uuidgen) #Again - whatever you like but keep it safe! Better to make it random
+
+# create the resource group. Skip this if you already have one
+echo "Creating resource group $RG"
+az group create --name $RG --location $LOCATION
 
 echo "Spinning up PostgreSQL $SERVERNAME in group $RG Admin is $USER"
 
 # Create the PostgreSQL service
 az postgres server create --resource-group $RG \
     --name $SERVERNAME \
+    --location $LOCATION\
     --admin-user $USER \
     --admin-password $PASS \
     --sku-name $SKU \
@@ -43,15 +46,32 @@ echo "Your IP is $IP"
 
 # Open up the firewall so we can access
 echo "Popping a hole in firewall for IP address $IP (that's you)"
-az postgres server firewall-rule create --resource-group $RG \
-        --server $SERVERNAME --name AllowMyIP \
-        --start-ip-address $IP --end-ip-address $IP
+az postgres server firewall-rule create \
+        --resource-group $RG \
+        --server $SERVERNAME \
+        --name AllowMyIP \
+        --start-ip-address $IP \
+        --end-ip-address $IP
 
-PG_URL = "postgres://$USER%40$SERVERNAME:$PASS@$SERVERNAME.postgres.database.azure.com"
-echo "Creating database..."
-psql "$PG_URL/postgres" -c "CREATE DATABASE $DATABASE;"
+echo "Popping a hole in firewall for Azure services"
+az mysql server firewall-rule create \
+        --resource-group $RG \
+        --server $SERVERNAME \
+        --name AllowAzureIP \
+        --start-ip-address 0.0.0.0 \
+        --end-ip-address 0.0.0.0
 
-AZURE_DATABASE_URL="$PG_URL/$DATABASE"
-echo "$AZURE_DATABASE_URL" >> .env
-echo "Azure database URL added to your .env file. You can now connect to the server by entering this command: "
-echo "psql $AZURE_DATABASE_URL"
+echo "Setting ENV variables locally"
+PG_SERVER=$SERVERNAME.mysql.database.azure.com
+PG_USER=$USER
+PG_PASSWORD=$PASS
+PG_PORT=3306
+PG_URL = "postgres://$USER%40$SERVERNAME:$PASS@$SERVERNAME.postgres.database.azure.com/postgres"
+
+echo "PG_SERVER=$PG_SERVER\nPG_USER=$USER\nPG_PASSWORD=$PASS\nPG_PORT=5436\nPG_URL=$PG_URL" >> .env
+echo "PostgreSQL ENV vars added to .env. You can printenv to see them, or cat .env."
+echo "To create a database, use psql $PG_URL -c 'create database [your db];'"
+echo "Adding connector shortcut to .env"
+echo "alias db_connect=\"psql $PG_URL" >> .env
+echo "Make sure you have the psql binary installed before trying to connect."
+source .env
