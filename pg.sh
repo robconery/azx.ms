@@ -1,9 +1,3 @@
----
-title: PostgreSQL
-description: Pushing Azure Database for PostgreSQL to Azure.
-group: Database
-author: Rob Conery
----
 #!/bin/bash
 
 ###### SET THESE #####
