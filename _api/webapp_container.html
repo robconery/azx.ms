@@ -34,6 +34,14 @@ az webapp create --resource-group $RG \
                   --name $APPNAME \
                   --deployment-container-image-name $IMAGE
 
+#If you have a custom or private container, uncomment and set the values below
+#az webapp config container set
+#  --docker-custom-image-name $IMAGE \
+#  --docker-registry-server-user ["ADD THIS"] \
+#  --docker-registry-server-password ["ADD THIS"] \
+#  --docker-registry-server-url ["ADD THIS TOO"]
+#  --enable-app-service-storage true
+
 echo "Setting up logging"
 #setup logging and monitoring
 az webapp log config --application-logging true \
