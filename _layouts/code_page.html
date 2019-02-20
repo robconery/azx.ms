@@ -1,8 +1,35 @@
 ---
 layout: default
 ---
-<h1>{{page.title}}</h1>
-<p>{{page.description}}</p>
-{% codeblock lang:sh title:page.title url:"http://something" link_text: "Download"%}
-  {{page.content}}
-{% endcodeblock %}
+
+<div class="wrapper">
+  <section class="section section-lg">
+    <section class="section">
+      <img src="/assets/img/path4.png" class="path">
+      <div class="container" id="app">
+        <h1 class="text-center">{{page.title}}</h1>
+        <div class="row">
+          <div class="col-10 offset-md-1">
+            {{content}}
+            <h2 class="text-center" style="margin-top:24px">The Script</h2>
+            <pre>
+              <code class="sh" id="scriptCode">
+
+              </code>
+            </pre>
+          </div>
+      </div>
+    </section>
+  </section>
+</div>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/github-gist.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
+
+<script>
+$(function(){
+  $.get("https://azx.ms/{{page.api}}").then(res => {
+    $("#scriptCode").text(res);
+    $('#scriptCode').each(function(i, e) {hljs.highlightBlock(e)});
+  })
+})
+</script>

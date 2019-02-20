@@ -5,10 +5,9 @@ body {
   background-color:#178CD4;
 }
 pre :{
-  padding: 24px;
+
 }
 code {
-  padding:24px;
   border-radius: 8px;
 }
 .hljs {
@@ -20,4 +19,13 @@ kbd,
 samp {
   font-family: "OperatorMono-Book", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 1em;
+}
+
+p>code,
+li>code {
+  font-size: 14px;
+  background-color: #e0f7fb;
+  padding: 3px;
+  border: 1px solid #00c3e6;
+  color: #000;
 }

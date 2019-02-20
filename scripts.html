@@ -1,0 +1,45 @@
+---
+title: AZX Script Builder
+layout: default
+---
+{% assign data_scripts = site.api | where:"group","Database"%}
+{% assign web_scripts = site.api | where:"group","Web"%}
+
+<div class="wrapper">
+  <section class="section section-lg">
+    <section class="section">
+      <img src="/assets/img/path4.png" class="path">
+      <div class="container" id="app">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="text-center p-25">Web</h2>
+            {% for script in web_scripts %}
+            <ul class="list-group list-group-flush" >
+              <li class="list-group-item" style="background-color:transparent;border:0;border-bottom:1px solid #178CD4">
+                  <a href="/details/{{script.slug}}" ><h4 class="mb-1">{{ script.title }}</h4></a>
+                  <p class="mb-1 small">{{ script.description }}</p>
+                  <p class="mb-1 small"><i>Created by {{script.author}}</i></p>
+              </li>
+            </ul>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <h2 class="text-center" style="margin-top:24px">Data</h2>
+            {% for script in data_scripts %}
+            <ul class="list-group list-group-flush" >
+              <li class="list-group-item" style="background-color:transparent;border:0;border-bottom:1px solid #178CD4">
+                  <a href="/details/{{script.slug}}" ><h4 class="mb-1">{{ script.title }}</h4></a>
+                  <p class="mb-1 small">{{ script.description }}</p>
+                  <p class="mb-1 small"><i>Created by {{script.author}}</i></p>
+              </li>
+            </ul>
+            {% endfor %}
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+</div>
