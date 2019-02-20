@@ -13,8 +13,11 @@ layout: default
       <img src="/assets/img/patrat.png" class="shapes squares">
       <img src="/assets/img/cercuri.png" class="shapes circle">
       <div class="content-center">
-        <div class="row row-grid justify-content-between align-items-center text-left">
-          <div class="col-8">
+        <div class="row justify-content-between align-items-center text-left">
+          <div class="col-lg-4 d-none d-lg-block d-md-block">
+            <img src="/assets/img/bit.png" alt="Circle image" class="img-fluid">
+          </div>
+          <div class="col-lg-8">
             <h1 class="text-white">Build Your Azure Scripts Easily</h1>
             <p class="text-white mb-3">
               Choose what you want, copy, paste. Don't see what you want? 
@@ -22,19 +25,19 @@ layout: default
             </p>
             <p>
               Install AZX in bash:
-              <pre style="padding:12px;background-color:#000000;border-radius:8px;color:yellow">
+              <pre class="text-left" style="padding:12px;background-color:#000000;border-radius:8px;color:yellow">
 echo "function azx() { curl -sL https://azx.ms/api/\$1;}" >> \
 ~/.bashrc && source ~/.bashrc</pre>
             </p>
             <p>
               Install AZX in zshell:
-              <pre style="padding:12px;background-color:#000000;border-radius:8px;color:#56A50B">
+              <pre class="text-left" style="padding:12px;background-color:#000000;border-radius:8px;color:#56A50B">
 echo "function azx() { curl -sL https://azx.ms/api/\$1;}" >> \
 ~/.zshrc && source ~/.zshrc</pre>
             </p>
             <p>
               Run it:
-              <pre style="padding:12px;background-color:#000000;border-radius:8px;color:orange">
+              <pre class="text-left" style="padding:12px;background-color:#000000;border-radius:8px;color:orange">
 azx help
 azx list
 azx postgres > azure_postgres.sh</pre>
@@ -44,16 +47,12 @@ azx postgres > azure_postgres.sh</pre>
               <a href="/recipes" class="btn btn-success">Recipes</a>
             </p>
           </div>
-          <div class="col-4">
-            <img src="/assets/img/bit.png" alt="Circle image" class="img-fluid">
-          </div>
+
         </div>
       </div>
     </div>
-    {% include footer.html %}
   </div>
-  <link rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/atom-on-dark.min.css">
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/highlight.min.js"></script>
 <script>
 $(function(){
