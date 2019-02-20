@@ -6,4 +6,5 @@ _site
 .bundle
 .code-highlighter-cache
 dd.sh
+wp.sh
 .env
