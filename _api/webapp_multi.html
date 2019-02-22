@@ -8,19 +8,15 @@ group: Web
 
 ###### CHANGE THESE AS NEEDED #######
 RG="AZX"
-LOCATION="West US"
-APPNAME="WPMULTI$RANDOM"
+APPNAME="AZXMULTI$RANDOM"
+{% include locations.html %}
 
-#The sku should be one of:
-#D1(Shared), B1(Basic Small), B2(Basic Medium), B3(Basic Large), 
-#S1(Standard Small), P1(Premium Small), P1V2(Premium V2 Small), 
-#PC2 (Premium Container Small), PC3 (Premium Container Medium), 
-#PC4 (Premium Container Large).
+{% include skus.html %}
+#####################################
 
-#accepted values: B1, B2, B3, D1, P1, P1V2, P2, P2V2, P3, P3V2, PC2, PC3, PC4, S1, S2, S3, SHARED
-#S1 is a good choice for this setup as it needs some horsepower. Also...
-#FREE is not valid for --is-linux for some reason
-SKU=S1
+{% include rg.html %}
+
+{% include plan_linux.html %}
 
 #This is your Docker Compose YAML file. Edit as you need or, if you want
 #Pop it into its own file. Up to you.
@@ -55,14 +51,7 @@ volumes:
     db_data:
 configyml
 
-echo "Creating Resource Group"
-az group create -n $RG --location $LOCATION
 
-echo "Creating AppService Plan"
-az appservice plan create --name $APPNAME \
-                          --resource-group $RG \
-                          --is-linux \
-                          --sku $SKU
 
 echo "Creating Web app"
 az webapp create --resource-group $RG \
@@ -71,25 +60,7 @@ az webapp create --resource-group $RG \
                   --multicontainer-config-type compose \
                   --multicontainer-config-file config.yml
 
-echo "Setting up logging"
-az webapp log config --application-logging true \
-                    --detailed-error-messages true \
-                    --web-server-logging filesystem \
-                    --level information \
-                    --name $APPNAME \
-                    --resource-group $RG
-
-echo "An alias for setting your domain (when you're ready) has been added to your .env"
-echo "To create a domain, you need to set a CNAME pointed to $APPNAME.azurewebsites.net"
-echo "For more information you can have a look here: "
-echo "https://docs.microsoft.com/en-us/azure/app-service/web-sites-traffic-manager-custom-domain-name?WT.mc_id=webapp-azx-robcon"
-echo "alias setdomain='az webapp config hostname add --webapp-name $APPNAME --resource-group $RG --hostname [YOUR DOMAIN]'"
-
-
-echo "Adding logs alias to .env. Invoking this will allow you to see the application logs realtime-ish."
-
-#set an alias for convenience - add to .env
-echo "alias logs='az webapp log tail -n $APPNAME -g $RG'" >> .env
+{% include logging.html %}
 
 echo "Opening site and viewing logs"
 open https://$APPNAME.azurewebsites.net
