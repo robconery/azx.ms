@@ -19,8 +19,12 @@ APPNAME="AZXMULTI$RANDOM"
 {% include plan_linux.html %}
 
 #This is your Docker Compose YAML file. Edit as you need or, if you want
-#Pop it into its own file. Up to you.
-#I'm using Wordpress here as a way to show a basic docker compose file.
+#Pop it into its own file. Up to you - just make sure the script below knows
+#where to find the file.
+#I'm using Wordpress here as a way to show a basic docker compose file, but
+#feel free to use Ghost or whatever you want. This is how I set up my blog
+#by the way...
+
 cat << configyml > config.yml 
 version: '3.3' 
 
@@ -51,8 +55,7 @@ volumes:
     db_data:
 configyml
 
-
-
+#Note the config file setting
 echo "Creating Web app"
 az webapp create --resource-group $RG \
                   --plan $APPNAME \

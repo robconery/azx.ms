@@ -38,9 +38,9 @@ az webapp config appsettings set --name $APPNAME \
                                  --settings \
                                  database__client=mysql \
                                  database__connection__database=ghost \
-                                 database__connection__host=$MYSQL_SERVER \
-                                 database__connection__user=$MYSQL_USER \
-                                 database__connection__password=$MYSQL_PASSWORD \
+                                 database__connection__host=$DB_SERVERNAME.mysql.database.azure.com \
+                                 database__connection__user=$DB_USER@$DB_SERVERNAME \
+                                 database__connection__password=$DB_PASS \
                                  WEBSITES_PORT=2368 \
                                  WEBSITES_ENABLE_APP_SERVICE_STORAGE=true
 {% include logging.html %}
