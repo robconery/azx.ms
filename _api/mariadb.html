@@ -1,0 +1,17 @@
+---
+title: MariaDB
+description: Creating a MariaDB service hosted on Azure.
+group: Database
+author: Rob Conery
+---
+#!/bin/bash
+
+###### CHANGE THESE AS NEEDED #######
+RG="AZX"
+{% include locations.html %}
+
+{% include skus_db.html %}
+#####################################
+{% include rg.html %}
+
+{% include db_create.html server="mariadb" %}
