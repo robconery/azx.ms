@@ -21,7 +21,8 @@ APPNAME="AZX$RANDOM"
 {% include plan_linux.html %}
 
 {% include webapp_container.html %}
-Add these lines if you have a private repo     
+
+# Add these lines if you have a private repo     
 # az webapp config container set --resource-group $RG \
 #                               --name $APPNAME \             
 #                               --docker-registry-server-user "[YOUR DOCKERHUB USER NAME]" \
