@@ -1,0 +1,48 @@
+---
+title: Makefile for Web App | Containers
+description: Creates a web application on Azure that will pull from a Docker image on DockerHub
+author: Rob Conery
+group: Web
+---
+
+###### CHANGE THESE AS NEEDED #######
+RG=AZX
+IMAGE=dockeralias/image:tag
+APPNAME=YOUR_APP_NAME
+PLAN=YOUR_APP_PLAN_NAME
+#####################################
+
+all: rg plan webapp logging deployment open logs
+
+rg:
+	az group create -n $(RG) -l westus
+	
+plan:
+	az appservice plan create -g $(RG) -n $(PLAN) --is-linux --sku S1
+
+webapp:
+	az webapp create -n $(APPNAME) -g $(RG) -p $(PLAN) -i $(IMG)
+
+logging:
+	az webapp log config --application-logging true \
+                    --web-server-logging filesystem \
+                    --detailed-error-messages true \
+                    --docker-container-logging filesystem \
+                    --failed-request-tracing true \
+                    --level information \
+                    --name $(APPNAME) \
+                    --resource-group $(RG) \
+
+deployment:
+	az webapp deployment container config -n $(APPNAME) -g $(RG) -e true
+
+logs:
+	az webapp log tail -n $(APPNAME) -g $(RG) --verbose
+
+open:
+	open https://$(APPNAME).azurewebsites.net
+
+rollback:
+	az group delete -n $(RG)
+
+.PHONY: all rg plan webapp logging deployment rollback open logs
