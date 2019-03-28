@@ -29,30 +29,23 @@ cat << configyml > config.yml
 version: '3.3' 
 
 services:
-   db:
-     image: mysql:5.7
-     volumes:
-       - db_data:/var/lib/mysql
-     restart: always
-     environment:
-       MYSQL_ROOT_PASSWORD: 23l4kjlk3lkj234432l2l3k4j3
-       MYSQL_DATABASE: wordpress
-       MYSQL_USER: wp
-       MYSQL_PASSWORD: iij34jhj292kjksksk393923ks
+  wordpress:
+      image: wordpress
+      links:
+      - mariadb:mysql
+      environment:
+      - WORDPRESS_DB_PASSWORD=<password>
+      volumes:
+      - ./code:/code
+      - ./html:/var/www/html
+  mariadb:
+      image: mariadb
+      environment:
+      - MYSQL_ROOT_PASSWORD=<password>
+      - MYSQL_DATABASE=wordpress
+      volumes:
+      - ./database:/var/lib/mysql
 
-   wordpress:
-     depends_on:
-       - db
-     image: wordpress:latest
-     ports:
-       - "8000:80"
-     restart: always
-     environment:
-       WORDPRESS_DB_HOST: db:3306
-       WORDPRESS_DB_USER: wp
-       WORDPRESS_DB_PASSWORD: iij34jhj292kjksksk393923ks
-volumes:
-    db_data:
 configyml
 
 #Note the config file setting
