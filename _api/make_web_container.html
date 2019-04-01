@@ -21,7 +21,7 @@ plan:
 	az appservice plan create -g $(RG) -n $(PLAN) --is-linux --sku S1
 
 webapp:
-	az webapp create -n $(APPNAME) -g $(RG) -p $(PLAN) -i $(IMG)
+	az webapp create -n $(APPNAME) -g $(RG) -p $(PLAN) -i $(IMAGE)
 
 logging:
 	az webapp log config --application-logging true \
