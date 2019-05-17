@@ -60,7 +60,7 @@ Now open up the script in an editor, change what you need (usually just variable
 
 ## Have a Script for Us? Or a Request?
 
-Feel free to leave an issue or drop a PR. Take a look at the `_api` and `_recipes` directory and decide where you think your script should go. The `_api` directory is supposed to be for basic things, like creating a simple web app or a database. The `_recipes` directory is a bit more end to end.
+Feel free to leave an issue or drop a PR. Take a look at the `_api` and `_includes` directory and decide where you think your script should go. 
 
 Please follow the format and conventions you see there, including adding your name a description. **Please be sure your script works!**
 
